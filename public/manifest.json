@@ -1,0 +1,20 @@
+{
+    "name": "IDK my work",
+    "short_name": "IDK - O",
+    "start_url": ".",
+    "background_color": "#000000", 
+    "theme_color": "#0d4c73",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "PWA/Images/IDK Logo 192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "PWA/Images/IDKLogo512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

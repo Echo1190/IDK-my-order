@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme.color" content="#0d4c73">
+    <link rel="stylesheet" href="./PWA/src/userShop.css">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- You can add more <link> tags for other sizes and formats -->
+    <link rel="icon" href="PWA/Images/IDK Logo 16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="PWA/Images/IDK Logo 32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="PWA/Images/IDK Logo 64.png" sizes="64x64" type="image/png">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('Service worker registered successfully.');
+                })
+                .catch(error => {
+                    console.error('Error registering service worker:', error);
+                });
+        }
+    </script>
+
+</head>
+<body>
+    <section class="invitation form--hidden">
+        <div class="form__input-group">
+            <i class='bx bxl-xing' id="close-invite"></i>
+            <h1 class="form__title">Add Shop</h1>
+            <p>Add shop to your profile...</p>
+            <hr class="separate"> 
+            <input type="text"  id = "invite" class="form__input" autofocus placeholder="Invite Code">
+            <div class="form__input-error-message"></div>
+
+            <button class="form__button" id = "inviteButton"  type="button">Bet</button>
+        </div>
+    </section>
+    <section class="qrForm form--hidden">
+        <div class="form__input-group">
+            <i class='bx bxl-xing' id="close-invite"></i>
+            <h1 class="form__title">Scan the Code</h1>
+            <p>Add shop to your profile...</p>
+            <hr class="separate"> 
+            <!-- QR Code Generator -->
+            <div id="qrcode"></div>
+            <div class="form__input-error-message"></div>
+        </div>
+    </section>
+    <!-- Header -->
+    <header class="header">
+        <!-- Nav -->
+        <div class="nav container">
+            <a href="#" class="logo">I D K</a>
+            
+            <!-- invite Icon -->
+            <i class='bx bx-mail-send' id="send-icon"></i>"
+
+            <!-- QR Code Scanner-->
+            <i class='bx bx-qr' id="scanQR"></i>
+            
+            <!-- Cart Icon -->
+            <i class='bx bxs-shopping-bags' id="cart-icon"></i>
+
+            <!-- Cart -->
+            <div class="cart">
+                <h2 class="cart-title"></h2>
+                <!-- Cart Content -->
+                <div class="cart-content">
+                    
+                </div>
+                <!-- Total -->
+                <hr class="cart__separator">
+                <div class="total">
+                    <div class="total-title">Total: </div>
+                    <div class="total-price">R 0</div>
+                </div>
+                <!-- Buy Button -->
+                <button type="button" class="btn-buy">Buy</button>
+                <!-- Cart Close -->
+                <i class='bx bxl-xing' id="close-cart"></i>
+            </div>
+        </div>
+    </header>
+        <!-- Shop Profile-->
+    <section class="my-shop">
+        <div class="shop-profile">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="#" class="profileImage">
+                    <span></span>
+                </div>
+                <h2 class="profileName"></h2>
+                <p class="profileEmail"></p>
+                <p class="profileLocation"></p>
+                <hr class="profile-separator">
+                <div class="profile-content">
+                    <p class="profileAbout"></p>
+                </div>
+
+                <ul>
+                    <li><a href="#" target="_blank" class="bx bxl-instagram-alt" id="sm"></a></li>
+                    <li><a href="#" target="_blank" class="bx bxl-facebook-circle" id="sm"></a></li>
+                    <li><a href="#" target="_blank" class="bx bxl-twitter" id="sm"></a></li>
+                    <li><a href="#" target="_blank" class="bx bxl-pinterest" id="sm"></a></li>
+                </ul>
+
+                <button class="change-profile-btn">Change Profile</button>
+                <button type="button" class="logout-btn">Log Out</button>
+            </div>
+        </div>
+        <div class="change-shop-profile">
+            <div class="input-profile">
+                <i class='bx bxl-xing' id="close"></i>
+                <label for="profile-picture-input" class="input-profile-image">
+                    <img src="#" class="profile-image" />
+                    <span for="profile-picture-input" class="hover-text">Upload</span>
+                </label>
+                <input type="file" id="profile-picture-input" style="display: none" accept="image/jpeg, image/png, image/jpg">
+                <input type="text" placeholder="Name" class="input-profile-title" id="nameTitle">
+                <input type="text" placeholder="Email Address" class="input-profile-title" id="emailTitle">
+                <input type="text" placeholder="Location of my shop" class="input-profile-title" id="locationTitle">
+                <textarea type="text" placeholder="About Your Store" class="input-profile-paragraph" wrap="soft" id="aboutTitle"></textarea>
+                <hr class="form__separator">
+                <input type="text" placeholder="https://www.instagram.com" class="input-profile-title" id="instaTitle">
+                <input type="text" placeholder="https://www.facebook.com" class="input-profile-title" id="faceTitle">
+                <input type="text" placeholder="https://twitter.com" class="input-profile-title" id="twitTitle">
+                <input type="text" placeholder="https://www.pinterest.com" class="input-profile-title" id="pinTitle">
+                <div class="form__input-error-message"></div>
+
+                <button class="save-button">Save</button>
+            </div>
+
+        </div>
+        <!-- Shop -->
+        <section class="shop">
+            <nav>
+                <ul>
+                <li><a class="nav__link" href="#" id="hotFoodNav">Foods</a></li>
+                <li><a class="nav__link" href="#" id="snacksNav">Snacks</a></li>
+                <li><a class="nav__link" href="#" id="drinksNav">Drinks</a></li>
+                <li><a class="nav__link" href="#" id="reviewNav">Review</a></li>
+                </ul>
+            </nav>
+            <hr class="form__separator">
+            <button type="button" class="change-btn">Add Products</button>
+
+            <!-- Input box -->
+            <div class="input-box">
+                <form class="input-product-box">
+                    <!-- Save Changes -->
+                    <i class='bx bxl-xing' id="close-changes"></i>
+                    <label for="productImage">
+                    <img src="PWA/Images/coke.png" name="image" class="product-image"/>
+                    <span for="productImage" class="hover-text">Upload</span>
+                    </label>
+                    <input type="file" id="productImage" accept="image/*">
+                    <!-- Update the input field classes to be unique within each productShopBox -->
+                    <input type="text" placeholder="Name" class="input-title" name="name">
+                    <input type="text" placeholder="Price" class="input-price" name="price">
+                    
+                    <!-- Category dropdown -->
+                    <select name="category" required class="input-category">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Foods">Foods</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Drinks">Drinks</option>
+                        <option value="Review">Review</option>
+                    </select>
+                    
+                    <div id="errorMessage" style="color: #ff6961;"></div>
+                    <button class="add-button">Add</button>
+                </form>
+            </div>
+
+            <!-- Content -->
+            <div class="shop-content" id="productsContainer">
+
+            </div>
+        </section>
+    </section>
+
+    <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script type="module" src = "./PWA/src/js/userShop.js"></script>
+</body>
+</html>
